@@ -222,4 +222,5 @@ Possible next iterations:
 ## Author
 
 Michal Chojka
+
 *Backend system prototype created as part of a software engineering learning project focused on backend architecture and system design.*
