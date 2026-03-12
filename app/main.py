@@ -96,7 +96,7 @@ def list_devices(db: Session = Depends(get_db)):
         device.status = "online" if delta < DEVICE_ONLINE_THRESHOLD else "offline"
 
     return devices
-,,
+
 # --- Telemetry Endpoints ---
 
 @app.post("/devices/{device_id}/telemetry", response_model=schemas.TelemetryResponse)
