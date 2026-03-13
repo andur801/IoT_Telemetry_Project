@@ -174,15 +174,23 @@ Body:
 * Docker
 * PostgreSQL (via Docker)
 
-### Start the database
+## Setup
+
+1. Clone the repository
+2. Create a virtual environment
+3. Install dependencies
+
+pip install -r requirements.txt
+
+4. Start the database
 
 docker compose up -d
 
-### Run the API
+5. Run the API
 
 uvicorn app.main:app --reload
 
-### Open API documentation
+6. Open API documentation
 
 http://127.0.0.1:8000/docs
 
