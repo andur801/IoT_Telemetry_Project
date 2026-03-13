@@ -186,13 +186,14 @@ pip install -r requirements.txt
 
 docker compose up -d
 
-5. Run the API
+5. Change .env.example to .env (or adjust it accordingly)
+6. Run the API
 
 uvicorn app.main:app --reload
 
-6. Open API documentation
+7. Open API documentation
 
-http://127.0.0.1:8000/docs
+In your web browser at: http://127.0.0.1:8000/docs
 
 ---
 
