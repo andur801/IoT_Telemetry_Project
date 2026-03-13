@@ -8,6 +8,13 @@ from . import models, schemas
 from .security import hash_password
 from datetime import datetime, timezone, timedelta
 import secrets
+import os
+import sys
+
+if not os.path.exists(".env"):
+    print("\033[91mFAIL\033[0m:\tMissing .env configuration file.")
+    print("Create a .env file based on .env.example before starting the API.")
+    sys.exit(1)
 
 MAX_RECORDS_PER_DEVICE = 1000 # Max telemetry records to keep per device (oldest records will be deleted when limit is exceeded)
 DEVICE_ONLINE_THRESHOLD = 60  # How long before device will be offline in seconds
