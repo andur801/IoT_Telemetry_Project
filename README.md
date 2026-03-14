@@ -177,8 +177,12 @@ Body:
 ## Setup
 
 1. Clone the repository
-2. Create a virtual environment
-3. Install dependencies
+2. Create environment configuration
+
+cp .env.example .env
+
+3.1. Create a virtual environment (.venv)
+3.2. Install dependencies
 
 pip install -r requirements.txt
 
@@ -186,12 +190,11 @@ pip install -r requirements.txt
 
 docker compose up -d
 
-5. Change .env.example to .env (or adjust it accordingly)
-6. Run the API
+5. Run the API
 
 uvicorn app.main:app --reload
 
-7. Open API documentation
+6. Open API documentation
 
 In your web browser at: http://127.0.0.1:8000/docs
 
