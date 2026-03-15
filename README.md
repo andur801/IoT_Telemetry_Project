@@ -1,9 +1,14 @@
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-database-blue)
+![Docker](https://img.shields.io/badge/Docker-containerized-blue)
+
 # IoT Telemetry Platform (Backend System Prototype)
 
 ## Overview
 
 This project is a backend system prototype designed to simulate an IoT telemetry platform.
-It demonstrates how devices can authenticate with an API, send telemetry data, and store it in a scalable backend architecture.
+It demonstrates how devices can authenticate with an API, send telemetry data, and store it in a scalable backend architecture using FastAPI, PostgreSQL, and Docker.
 
 The system was built to showcase backend engineering concepts, including:
 
@@ -16,6 +21,25 @@ The system was built to showcase backend engineering concepts, including:
 * containerised database deployment
 
 Rather than focusing on a user interface, the project focuses on **system architecture and backend design**.
+
+---
+
+## Project Structure
+
+```
+app/
+│
+├── main.py           API endpoints
+├── models.py         SQLAlchemy database models
+├── schemas.py        Pydantic API schemas
+├── database.py       Database configuration
+└── security.py       Password hashing utilities
+
+device_simulator.py   Simulated IoT device sending telemetry
+docker-compose.yml    PostgreSQL container configuration
+requirements.txt      Python dependencies
+README.md             Project documentation
+```
 
 ---
 
@@ -34,6 +58,26 @@ Main components:
 * **PostgreSQL** – persistent telemetry storage
 * **SQLAlchemy** – ORM for database interaction
 * **Docker** – containerized database service
+
+System Architecture:
+
+```mermaid
+flowchart LR
+
+Device[IoT Device Simulator]
+API[FastAPI API Server]
+Auth[API Key Authentication]
+Telemetry[Telemetry Ingestion]
+Retention[Data Retention Policy]
+DB[(PostgreSQL)]
+
+Device -->|HTTP Request| API
+API --> Auth
+Auth --> Telemetry
+Telemetry --> DB
+Telemetry --> Retention
+Retention --> DB
+```
 
 ### Data Flow
 
@@ -155,14 +199,20 @@ Submit telemetry data from a device.
 
 Example request:
 
-Headers:
+```
+POST /devices/1/telemetry
 Authorization: Bearer <device_api_key>
+Content-Type: application/json
+```
 
 Body:
+
+```json
 {
-"metric_type": "temperature",
-"value": 22.4
+  "metric_type": "temperature",
+  "value": 22.5
 }
+```
 
 ---
 
@@ -177,8 +227,12 @@ Body:
 ## Setup
 
 1. Clone the repository
-2. Create a virtual environment
-3. Install dependencies
+2. Create environment configuration
+
+cp .env.example .env
+
+3.1. Create a virtual environment (.venv)
+3.2. Install dependencies
 
 pip install -r requirements.txt
 
@@ -186,12 +240,11 @@ pip install -r requirements.txt
 
 docker compose up -d
 
-5. Change .env.example to .env (or adjust it accordingly)
-6. Run the API
+5. Run the API
 
 uvicorn app.main:app --reload
 
-7. Open API documentation
+6. Open API documentation
 
 In your web browser at: http://127.0.0.1:8000/docs
 
