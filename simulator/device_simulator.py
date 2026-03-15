@@ -3,7 +3,7 @@ import random
 import time
 
 DEVICE_ID = 1  # Change this to match an existing device ID in your database
-API_URL = f"http://127.0.0.1:8000/devices/{DEVICE_ID}/telemetry"
+API_URL = f"http://127.0.0.1:8080/devices/{DEVICE_ID}/telemetry"
 DEVICE_API_KEY = "a5eff3a6b62f6e8459e6fa2a1d197fdc"  # Change this to match the API key of the device
 
 METRICS = [
