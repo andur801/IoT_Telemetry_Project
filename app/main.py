@@ -1,14 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI
 from app.routers import users, devices, telemetry
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from sqlalchemy.orm import Session
-from sqlalchemy.exc import IntegrityError, OperationalError
+from sqlalchemy.exc import OperationalError
 from contextlib import asynccontextmanager
-from .database import engine, Base, get_db
-from . import models, schemas
-from .security import hash_password
-from datetime import datetime, timezone, timedelta
-import secrets
+from .database import engine, Base
 import os
 import sys
 
